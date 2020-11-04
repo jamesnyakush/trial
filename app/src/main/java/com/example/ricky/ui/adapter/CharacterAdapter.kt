@@ -1,23 +1,34 @@
 package com.example.ricky.ui.adapter
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import com.example.ricky.R
+import com.example.ricky.data.db.model.Character
+import kotlinx.android.synthetic.main.item_character.view.*
 
-class CharacterAdapter : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>(){
+
+class CharacterAdapter(
+        private var characters: List<Character>
+) : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
-        TODO("Not yet implemented")
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = CharacterViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_character, parent, false)
+    )
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getItemCount() = characters.size
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val character = characters[position]
+
+        holder.itemView.apply {
+            textViewCharacterName.text = character.name
+            imageViewCharacterImage.load(character.image)
+        }
     }
 
-    class CharacterViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView)
+    class CharacterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 }
