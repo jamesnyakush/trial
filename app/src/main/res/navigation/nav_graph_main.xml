@@ -9,5 +9,18 @@
         android:id="@+id/characterDetail"
         android:name="com.example.ricky.ui.fragment.CharacterDetail"
         android:label="character_detail_fragment"
-        tools:layout="@layout/character_detail_fragment" />
+        tools:layout="@layout/character_detail_fragment" >
+        <action
+            android:id="@+id/action_characterDetail_to_characterMore"
+            app:destination="@id/characterMore" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterMore"
+        android:name="com.example.ricky.ui.fragment.CharacterMore"
+        android:label="character_more_fragment"
+        tools:layout="@layout/character_more_fragment">
+        <argument
+            android:name="character"
+            app:argType="com.example.ricky.data.db.model.Character" />
+    </fragment>
 </navigation>
